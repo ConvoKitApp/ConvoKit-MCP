@@ -1,7 +1,7 @@
 {
   "mcpServers": {
     "convokit_developer": {
-      "url": "https://convokit-mcp.suryadeep.workers.dev/mcp/developer"
+      "url": "https://mcp.convokit.app/mcp/developer"
     },
     "convokit_app": {
       "command": "npx",

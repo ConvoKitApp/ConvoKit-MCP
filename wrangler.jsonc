@@ -2,11 +2,23 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "convokit-mcp",
   "main": "src/worker.ts",
-  "account_id": "6699099217de39f0e71515bebf0156ea",
+  "account_id": "d5c17f6df9dc13049a2270ef0974b096",
   "compatibility_date": "2026-09-28",
-  "compatibility_flags": ["nodejs_compat"],
-  "workers_dev": true,
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+  "workers_dev": false,
   "preview_urls": false,
-  "vars": { "RELEASE_SHA": "local" },
-  "observability": { "enabled": true }
+  "vars": {
+    "RELEASE_SHA": "local"
+  },
+  "observability": {
+    "enabled": true
+  },
+  "routes": [
+    {
+      "pattern": "mcp.convokit.app",
+      "custom_domain": true
+    }
+  ]
 }

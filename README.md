@@ -15,17 +15,17 @@ Both connections can run in one process, or in separate processes using the same
 
 ### Public Developer connection
 
-Connect directly to **https://convokit-mcp.suryadeep.workers.dev/mcp/developer**. No installation or credentials are required.
+Connect directly to **https://mcp.convokit.app/mcp/developer**. No installation or credentials are required.
 
 ```bash
-codex mcp add convokit_developer --url https://convokit-mcp.suryadeep.workers.dev/mcp/developer
+codex mcp add convokit_developer --url https://mcp.convokit.app/mcp/developer
 ```
 
 Or add this to `~/.codex/config.toml`:
 
 ```toml
 [mcp_servers.convokit_developer]
-url = "https://convokit-mcp.suryadeep.workers.dev/mcp/developer"
+url = "https://mcp.convokit.app/mcp/developer"
 ```
 
 For Cursor, use [examples/mcp-production.json](examples/mcp-production.json) in `.cursor/mcp.json`. The public setup guide is [convokit.app/docs/mcp](https://convokit.app/docs/mcp); Codex options are documented in the [official MCP guide](https://developers.openai.com/codex/mcp).
@@ -177,7 +177,7 @@ The production Worker serves only `/mcp/developer` and `/health`. It never impor
 npm run worker:check
 npm run worker:dry-run
 npm run worker:deploy -- --var RELEASE_SHA:$(git rev-parse HEAD)
-node scripts/smoke.mjs https://convokit-mcp.suryadeep.workers.dev/mcp/developer
+node scripts/smoke.mjs https://mcp.convokit.app/mcp/developer
 ```
 
 `/health` reports the release commit, version, snapshot date, and source hash. Wrangler uses the configured deployment account; forks should update the account and Worker name before deploying. See [Workers configuration](https://developers.cloudflare.com/workers/wrangler/configuration/) and the [SDK HTTP handler](https://github.com/modelcontextprotocol/typescript-sdk/blob/main/docs/serving/http.md).
