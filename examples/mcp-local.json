@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "convokit-developer": {
+      "command": "node",
+      "args": ["/absolute/path/ConvoKit-MCP/dist/cli.js", "developer"]
+    },
+    "convokit-app": {
+      "command": "node",
+      "args": ["/absolute/path/ConvoKit-MCP/dist/cli.js", "app"],
+      "env": {
+        "CONVOKIT_CLIENT_ID": "your-app-id",
+        "CONVOKIT_CLIENT_SECRET": "your-server-only-secret"
+      }
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "convokit_developer": {
+      "url": "https://mcp.convokit.app/mcp/developer"
+    },
+    "convokit_app": {
+      "command": "npx",
+      "args": ["-y", "github:ConvoKitApp/ConvoKit-MCP#v0.1.0", "app"],
+      "env": {
+        "CONVOKIT_CLIENT_ID": "your-app-id",
+        "CONVOKIT_CLIENT_SECRET": "YOUR_SERVER_ONLY_CLIENT_SECRET"
+      }
+    }
+  }
+}
