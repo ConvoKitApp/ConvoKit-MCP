@@ -1,0 +1,57 @@
+{
+  "name": "@convokitapp/mcp",
+  "version": "0.1.0",
+  "description": "Official ConvoKit developer guidance and app management MCP servers",
+  "type": "module",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22.20.0"
+  },
+  "bin": {
+    "convokit-mcp": "dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "examples"
+  ],
+  "scripts": {
+    "sync:docs": "node scripts/sync-docs.mjs",
+    "build": "tsc -p tsconfig.json",
+    "check": "tsc -p tsconfig.json --noEmit",
+    "test": "npm run build && node --test test/*.test.mjs",
+    "start": "node dist/cli.js http",
+    "start:developer": "node dist/cli.js developer",
+    "start:app": "node dist/cli.js app",
+    "validate": "npm run check && npm test",
+    "prepare": "npm run build",
+    "worker:types": "wrangler types",
+    "worker:check": "npm run worker:types && tsc -p tsconfig.worker.json",
+    "worker:dev": "wrangler dev --ip 127.0.0.1 --port 3334",
+    "worker:dry-run": "wrangler deploy --dry-run",
+    "worker:deploy": "wrangler deploy"
+  },
+  "dependencies": {
+    "@convokitapp/sdk": "1.1.0",
+    "@modelcontextprotocol/express": "2.0.1",
+    "@modelcontextprotocol/node": "2.1.0",
+    "@modelcontextprotocol/server": "2.1.0",
+    "express": "5.2.1",
+    "zod": "4.6.5"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20260928.1",
+    "@modelcontextprotocol/client": "2.1.0",
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.19.1",
+    "cheerio": "^1.2.0",
+    "esbuild": "^0.28.2",
+    "turndown": "^7.2.2",
+    "typescript": "~5.9.3",
+    "wrangler": "^4.142.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ConvoKitApp/ConvoKit-MCP.git"
+  }
+}

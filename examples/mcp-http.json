@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "convokit-developer": {
+      "url": "http://127.0.0.1:3333/mcp/developer"
+    },
+    "convokit-app": {
+      "url": "http://127.0.0.1:3333/mcp/app",
+      "headers": {
+        "Authorization": "Bearer your-distinct-MCP-app-access-token"
+      }
+    }
+  }
+}
