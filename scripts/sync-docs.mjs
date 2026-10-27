@@ -19,7 +19,7 @@ const components = {
   'swift-sdk': 'DocsSwiftSdk', 'swift-ui': 'DocsSwiftUi',
   'android-sdk': 'DocsAndroidSdk', 'android-ui': 'DocsAndroidUi',
   sdks: 'DocsSdkRoadmap', operations: 'DocsOperations',
-  mcp: 'DocsMcp',
+  mcp: 'DocsMcp', 'chat-widget': 'DocsChatWidget',
 }
 const platforms = {
   'javascript-sdk': ['javascript', 'react', 'vue'], 'react-ui': ['react'], 'vue-ui': ['vue'],
@@ -27,6 +27,7 @@ const platforms = {
   'flutter-sdk': ['flutter'], 'flutter-ui': ['flutter'],
   'swift-sdk': ['swift'], 'swift-ui': ['swift'],
   'android-sdk': ['android'], 'android-ui': ['android'],
+  'chat-widget': ['website'],
 }
 
 const imports = Object.entries(components).map(([id, component]) =>

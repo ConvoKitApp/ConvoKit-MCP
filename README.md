@@ -121,14 +121,15 @@ Use [examples/mcp-http.json](examples/mcp-http.json) as a starting point. MCP cl
 | `get_code_examples` | Read exact documented snippets, filtered by topic and paginated |
 | `get_integration_plan` | Get platform-specific setup steps, guide links, and backend token examples |
 
-Supported platforms: `javascript`, `react`, `vue`, `react-native`, `flutter`, `swift`, and `android`.
+Supported platforms: `javascript`, `react`, `vue`, `react-native`, `flutter`, `swift`, `android`, and `website` (the paste-a-snippet chat widget for HTML, Wix, Shopify, and WordPress sites).
 
-All 19 guides are also available as `convokit://docs/<guide-id>` resources. The `integrate_convokit` prompt accepts `platform` and `goal` and prepares a task grounded in the official guides.
+All 20 guides are also available as `convokit://docs/<guide-id>` resources. The `integrate_convokit` prompt accepts `platform` and `goal` and prepares a task grounded in the official guides.
 
 Example requests to your assistant:
 
 - “Use ConvoKit to add support chat to this React application.”
 - “Find the SwiftUI example for read receipts.”
+- “Add the ConvoKit chat widget to our Shopify theme.”
 - “Show the authenticated backend token endpoint and adapt it to our session middleware.”
 
 ### Keep documentation current

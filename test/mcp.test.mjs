@@ -76,7 +76,7 @@ test('developer MCP supports HTTP discovery, search, sections, examples, resourc
   assert.ok(tools.tools.every(tool => tool.annotations.readOnlyHint))
   assert.ok(!JSON.stringify(tools).includes('clientSecret'))
   const listed = json(await client.callTool({ name: 'list_guides', arguments: {} }))
-  assert.equal(listed.guides.length, 19)
+  assert.equal(listed.guides.length, 20)
   const found = json(await client.callTool({ name: 'search_docs', arguments: { query: 'tokenProvider', platform: 'react' } }))
   assert.ok(found.matches.length)
   const match = found.matches[0]
@@ -87,7 +87,7 @@ test('developer MCP supports HTTP discovery, search, sections, examples, resourc
   assert.ok(examples.examples[0].code.includes('requireProductUser'))
   assert.ok(examples.examples[0].code.includes('Cache-Control'))
   const resources = await client.listResources()
-  assert.equal(resources.resources.length, 19)
+  assert.equal(resources.resources.length, 20)
   const auth = await client.readResource({ uri: 'convokit://docs/auth' })
   assert.ok(auth.contents[0].text.includes('verified session'))
   const prompt = await client.getPrompt({ name: 'integrate_convokit', arguments: { platform: 'flutter', goal: 'Add support chat' } })
@@ -97,7 +97,7 @@ test('developer MCP supports HTTP discovery, search, sections, examples, resourc
 test('all platform plans reference existing guides and preserve complete code fences', async t => {
   const runtime = await start(t)
   const client = await runtime.connect()
-  for (const platform of ['javascript', 'react', 'vue', 'react-native', 'flutter', 'swift', 'android']) {
+  for (const platform of ['javascript', 'react', 'vue', 'react-native', 'flutter', 'swift', 'android', 'website']) {
     const plan = json(await client.callTool({ name: 'get_integration_plan', arguments: { platform, includeUi: false } }))
     assert.ok(plan.guides.every(guide => guides.some(source => source.id === guide.id)))
     assert.ok(plan.guides.every(guide => !guide.id.endsWith('-ui')))
@@ -111,6 +111,18 @@ test('all platform plans reference existing guides and preserve complete code fe
   }
   const unknown = await client.callTool({ name: 'get_guide', arguments: { guideId: '../../.env' } })
   assert.equal(unknown.isError, true)
+})
+
+test('website plans use the chat widget guide and its exact snippet', async t => {
+  const runtime = await start(t)
+  const client = await runtime.connect()
+  const plan = json(await client.callTool({ name: 'get_integration_plan', arguments: { platform: 'website' } }))
+  assert.deepEqual(plan.guides.map(guide => guide.id), ['chat-widget', 'auth'])
+  assert.ok(plan.steps.some(step => step.includes('any user ID')))
+  const listed = json(await client.callTool({ name: 'list_guides', arguments: { platform: 'website' } }))
+  assert.ok(listed.guides.some(guide => guide.id === 'chat-widget'))
+  const examples = json(await client.callTool({ name: 'get_code_examples', arguments: { guideId: 'chat-widget', topic: 'ConvoKitWidget.start' } }))
+  assert.ok(examples.examples.some(example => example.code.includes('https://cdn.jsdelivr.net/npm/@convokitapp/chat-embed@1/dist/main.js')))
 })
 
 test('documentation export preserves the exact original backend token snippet', async () => {

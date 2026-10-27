@@ -16,9 +16,10 @@ try {
   assert.equal(tools.length, 5)
   assert.ok(tools.every(tool => tool.annotations.readOnlyHint))
   const guides = json(await client.callTool({ name: 'list_guides', arguments: {} })).guides
-  assert.equal(guides.length, 19)
+  assert.equal(guides.length, 20)
   assert.ok(guides.some(guide => guide.id === 'mcp'))
-  for (const platform of ['javascript', 'react', 'vue', 'react-native', 'flutter', 'swift', 'android']) {
+  assert.ok(guides.some(guide => guide.id === 'chat-widget'))
+  for (const platform of ['javascript', 'react', 'vue', 'react-native', 'flutter', 'swift', 'android', 'website']) {
     const plan = json(await client.callTool({ name: 'get_integration_plan', arguments: { platform } }))
     assert.ok(plan.guides.length > 0)
     assert.ok(plan.backendExamples.some(example => example.code.includes('requireProductUser')))
@@ -29,7 +30,7 @@ try {
   assert.ok(section.section.text.includes('tokenProvider'))
   const examples = json(await client.callTool({ name: 'get_code_examples', arguments: { guideId: 'quickstart', topic: 'req.user' } })).examples
   assert.ok(examples[0].code.includes('Cache-Control'))
-  assert.equal((await client.listResources()).resources.length, 19)
+  assert.equal((await client.listResources()).resources.length, 20)
   assert.ok((await client.readResource({ uri: 'convokit://docs/auth' })).contents[0].text.includes('verified session'))
   assert.ok((await client.getPrompt({ name: 'integrate_convokit', arguments: { platform: 'react', goal: 'Add support chat' } })).messages.length)
 
