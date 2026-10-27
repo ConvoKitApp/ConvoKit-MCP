@@ -50,7 +50,7 @@ export function createDeveloperServer(): McpServer {
   })
 
   server.registerTool('get_integration_plan', {
-    description: 'Plan a ConvoKit integration for JavaScript, React, Vue, React Native, Flutter, Swift, or Android, with backend token examples and links to the exact platform guides.',
+    description: 'Plan a ConvoKit integration for JavaScript, React, Vue, React Native, Flutter, Swift, Android, or a website using the paste-a-snippet chat widget, with backend token examples and links to the exact platform guides.',
     inputSchema: z.object({ platform: platformSchema, includeUi: z.boolean().default(true) }), annotations,
   }, ({ platform, includeUi }) => result(integrationPlan(platform, includeUi)))
 
