@@ -174,6 +174,8 @@ One public Developer deployment can serve all integrators. Deploy App instances 
 
 The production Worker serves only `/mcp/developer` and `/health`. It never imports the App server or has customer app credentials. The documentation is public, so this deployment allows browser CORS from all origins. Long-lived change subscriptions are disabled because the corpus is immutable within a deployment.
 
+Every push to `main` deploys it automatically once CI passes: the `deploy` job in `.github/workflows/ci.yml` runs `wrangler deploy` with `RELEASE_SHA` set to the commit, runs the smoke test against `mcp.convokit.app`, and checks `/health` reports that commit. It needs the `CLOUDFLARE_API_TOKEN` repository secret, a Cloudflare API token from the "Edit Cloudflare Workers" template for the account in `wrangler.jsonc`. To deploy by hand instead:
+
 ```bash
 npm run worker:check
 npm run worker:dry-run
