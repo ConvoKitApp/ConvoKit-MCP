@@ -118,7 +118,7 @@ test('website plans use the chat widget guide and its exact snippet', async t =>
   const client = await runtime.connect()
   const plan = json(await client.callTool({ name: 'get_integration_plan', arguments: { platform: 'website' } }))
   assert.deepEqual(plan.guides.map(guide => guide.id), ['chat-widget', 'auth'])
-  assert.ok(plan.steps.some(step => step.includes('any user ID')))
+  assert.ok(plan.steps.some(step => step.includes('userHash')))
   const listed = json(await client.callTool({ name: 'list_guides', arguments: { platform: 'website' } }))
   assert.ok(listed.guides.some(guide => guide.id === 'chat-widget'))
   const examples = json(await client.callTool({ name: 'get_code_examples', arguments: { guideId: 'chat-widget', topic: 'ConvoKitWidget.start' } }))

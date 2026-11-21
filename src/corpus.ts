@@ -100,7 +100,7 @@ function widgetPlan() {
     platform: 'website' as const, includeUi: true, ...snapshotInfo,
     steps: [
       'Create the support user your team replies as, then turn on the chat widget for the app in the dashboard and set that user as the support agent.',
-      'Choose a login mode: guest for anonymous visitors, authToken when the site has its own sign-in. Use uid only for demos or apps without private conversations: anyone with the public widget key can sign in as any user ID.',
+      'Choose a login mode: guest for anonymous visitors, authToken when the site has its own sign-in. uid mode needs a userHash, the hex HMAC-SHA256 of the exact uid keyed with the widget identity secret, computed on your server; never put the identity secret in browser code. A missing or wrong hash returns 401 INVALID_USER_HASH.',
       'Use get_code_examples on the chat-widget guide for the exact snippet, and paste it before </body> on every page (Wix: Custom Code, Body - end; Shopify: layout/theme.liquid).',
       'For authToken mode, add the authenticated backend token endpoint: it derives the user from the verified session and returns { token }. Keep the client secret on the server.',
       'Set startConversationWith to the support user so visitors open a conversation with it.',
